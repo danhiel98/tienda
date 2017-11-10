@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.aspx">SB Admin</a>
+                <a class="navbar-brand" href="/Admin">Tienda</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -107,28 +107,29 @@
                         <a href="Clients.aspx"><i class="fa fa-fw fa-users"></i> Clientes</a>
                     </li>
                     <li>
-                        <a href="Providers.aspx"><i class="fa fa-fw fa-cubes"></i> Poroveedores</a>
+                        <a href="Providers.aspx"><i class="fa fa-fw fa-cubes"></i> Proveedores</a>
                     </li>
+                    <li>
+                        <a href="Categories.aspx"><i class="fa fa-fw fa-glass"></i> Categorías</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="Brands.aspx"><i class="fa fa-fw fa-wrench"></i> Marcas</a>
+                    </li>
+                    -->
+                    <!--
                     <li>
                         <a href="reabastesimiento.aspx"><i class="fa fa-fw fa-truck"></i> Reabastesimientos</a>
                     </li>
-                      <li>
-                        <a href="categoria.aspx"><i class="fa fa-fw fa-glass"></i> Categorias</a>
+                    -->
+                    <li>
+                        <a href="Products.aspx"><i class="fa fa-fw fa-desktop"></i> Productos</a>
                     </li>
                      <li>
-                        <a href="modelo.aspx"><i class="fa fa-fw fa-wrench"></i> Modelos</a>
+                        <a href="Requests.aspx"><i class="fa fa-fw fa-wrench"></i> Pedidos</a>
                     </li>
                      <li>
-                        <a href="marca.aspx"><i class="fa fa-fw fa-wrench"></i> Marcas</a>
-                    </li>
-                     <li>
-                        <a href="producto.aspx"><i class="fa fa-fw fa-desktop"></i> Productos</a>
-                    </li>
-                     <li>
-                        <a href="pedido.aspx"><i class="fa fa-fw fa-wrench"></i> Pedidos</a>
-                    </li>
-                     <li>
-                        <a href="envio.aspx"><i class="fa fa-fw fa-wrench"></i> Envíos</a>
+                        <a href="Sends.aspx"><i class="fa fa-fw fa-wrench"></i> Envíos</a>
                     </li>
                      <li>
                         <a href="devolucio.aspx"><i class="fa fa-fw fa-wrench"></i> devolucion</a>

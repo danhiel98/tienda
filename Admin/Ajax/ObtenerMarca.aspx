@@ -1,0 +1,1 @@
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ObtenerMarca.aspx.vb" Inherits="Admin_Ajax_ObtenerMarca" %>

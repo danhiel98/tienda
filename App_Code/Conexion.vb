@@ -27,4 +27,13 @@ Public Class Conexion
         conex.Close()
     End Sub
 
+    Public Function obtenerUltimoID(tabla As String) As Integer
+        Dim adapt As New SqlDataAdapter("SELECT MAX(ID) FROM " & tabla & " WHERE estado=1", conex)
+        Dim datos As New DataTable
+        conex.Open()
+        adapt.Fill(datos)
+        conex.Close()
+        Return datos.Rows(0).Item(0)
+    End Function
+
 End Class
