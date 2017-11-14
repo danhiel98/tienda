@@ -22,11 +22,12 @@ Partial Class Admin_EditProduct
         prod.Peso = Request.Params("ctl00$Contenido$peso")
         prod.Color = Request.Params("ctl00$Contenido$color")
         prod.Existencias = Request.Params("ctl00$Contenido$existencias")
-        If Request.Params("ctl00$Contenido$imgFileUpload") <> "" Then
+        If subirImagen() <> "" Then
             prod.Imagen = subirImagen()
         Else
             prod.Imagen = Request.Params("ctl00$Contenido$imgP")
         End If
+        
         Dim valores As String = "nombre='" & prod.Nombre & "', descripcion='" & prod.Descripcion & "', precio=" & prod.Precio & ", altura=" & prod.Altura & ", anchura=" &
             prod.Ancho & ", peso=" & prod.Peso & ", color='" & prod.Color & "', imagen='" & prod.Imagen & "', existencias=" & prod.Existencias & ", Categoria_id=" & prod.IDCategoria
         Dim condicion As String = "id=" & prod.ID
@@ -67,36 +68,37 @@ Partial Class Admin_EditProduct
     End Sub
 
     Protected Function subirImagen() As String
-        'If IsPostBack Then
-        Dim path As String = Server.MapPath("~/img/")
-        Dim fileOK As Boolean = False
-        If imgFileUpload.HasFile Then
-            Dim fileExtension As String
-            fileExtension = System.IO.Path. _
-                GetExtension(imgFileUpload.FileName).ToLower()
-            Dim allowedExtensions As String() = _
-                {".jpg", ".jpeg", ".png", ".gif"}
-            For i As Integer = 0 To allowedExtensions.Length - 1
-                If fileExtension = allowedExtensions(i) Then
-                    fileOK = True
+        If IsPostBack And imgFileUpload.HasFile Then
+            Dim path As String = Server.MapPath("~/img/")
+            Dim fileOK As Boolean = False
+            If imgFileUpload.HasFile Then
+                Dim fileExtension As String
+                fileExtension = System.IO.Path. _
+                    GetExtension(imgFileUpload.FileName).ToLower()
+                Dim allowedExtensions As String() = _
+                    {".jpg", ".jpeg", ".png", ".gif"}
+                For i As Integer = 0 To allowedExtensions.Length - 1
+                    If fileExtension = allowedExtensions(i) Then
+                        fileOK = True
+                    End If
+                Next
+                If fileOK Then
+                    Try
+                        imgFileUpload.PostedFile.SaveAs(path & _
+                             imgFileUpload.FileName)
+                        'Label1.Text = "File uploaded!"
+                    Catch ex As Exception
+                        'Label1.Text = "File could not be uploaded."
+                    End Try
+                Else
+                    ' Label1.Text = "Cannot accept files of this type."
                 End If
-            Next
-            If fileOK Then
-                Try
-                    imgFileUpload.PostedFile.SaveAs(path & _
-                         imgFileUpload.FileName)
-                    'Label1.Text = "File uploaded!"
-                Catch ex As Exception
-                    'Label1.Text = "File could not be uploaded."
-                End Try
+                Return imgFileUpload.FileName
             Else
-                ' Label1.Text = "Cannot accept files of this type."
+                Return ""
             End If
-            Return imgFileUpload.FileName
-        Else
-            Return ""
         End If
-        'End If
+        Return ""
     End Function
 
 End Class

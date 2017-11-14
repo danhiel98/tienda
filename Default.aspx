@@ -1,42 +1,61 @@
-﻿<%@ Page Title="Home Page" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Default.aspx.vb" Inherits="_Default" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Contenido" Runat="Server">
+    <div class="inner">
+		<header>
+			<h1>X-Cell</h1>
+			<h3>Encuentra los mejores dispositivos móviles al mejor precio.</h3>
+		</header>
+        
+        <script runat="server">
+            Protected Function obtainProds() As Data.DataTable
+                Dim dtab As New System.Data.DataTable
+                Dim cnx As New Conexion
+                dtab = cnx.consultar("SELECT * FROM tiendaasp.producto where estado = 1")
+                Return dtab
+            End Function
+        </script>                    
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
-
+		<section class="tiles">
+            <% 
+                Dim tb As New Data.DataTable
+                Dim cantProd As Integer
+                Dim img As String
+                
+                tb = obtainProds()
+                cantProd = tb.Rows.Count
+                
+                If cantProd > 0 Then
+                    For i = 0 To cantProd - 1
+                        If IsDBNull(tb.Rows(i).Item("imagen")) Or tb.Rows(i).Item("imagen") = "" Then
+                            img = "package.png"
+                        Else
+                            img = tb.Rows(i).Item("imagen")
+                        End If
+           %>
+                    <article>
+				        <span class="image">
+					        <img src="/img/<% Response.Write(img)%>" alt="" />
+				        </span>
+				        <a>
+					        <h2><% Response.Write(tb.Rows(i).Item("nombre"))%></h2>
+					        <div class="content">
+                                <p>
+                                    <% Response.Write(tb.Rows(i).Item("descripcion"))%> <br />
+                                    <% Response.Write(tb.Rows(i).Item("anchura"))%>cm x <%Response.Write(tb.Rows(i).Item("altura")) %>cm <br />
+                                    <% Response.Write(tb.Rows(i).Item("peso")) %> kg <br />
+                                    <% Response.Write(tb.Rows(i).Item("existencias"))%> disponibles <br />
+                                  $ <% Response.Write(tb.Rows(i).Item("precio"))%>
+                                </p>
+                                <span>Cantidad: <input style="width:50px;" type="number" name="cantidad" id="cantidad<% Response.Write(tb.Rows(i).Item("id"))%>" value="" min="1" max="<% Response.Write(tb.Rows(i).Item("existencias")) %>" /></span>
+                                <p><span id="<% Response.Write(tb.Rows(i).Item("id"))%>" class="button small special icon fa-cart-plus btn-add">Agregar al carrito</span></p>
+        					</div>
+		        		</a>
+			        </article>
+           <%       Next
+                End If
+           %>
+		</section>
+	</div>
+    <script src="Scripts/Otros/cart.js"></script>
 </asp:Content>
+

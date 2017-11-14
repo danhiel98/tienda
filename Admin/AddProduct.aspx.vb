@@ -34,8 +34,8 @@ Partial Class Admin_AddProduct
         prod.Estado = 1
         prod.Imagen = subirImagen()
         Dim valores As String = "'" & prod.Nombre & "','" & prod.Descripcion & "'," & prod.Precio & "," & prod.Altura & "," &
-            prod.Ancho & "," & prod.Peso & ",'" & prod.Color & "','" & prod.Imagen & "'," & prod.Existencias & ",'" &
-            prod.FechaCreado & "'," & prod.Estado & "," & prod.IDCategoria
+            prod.Ancho & "," & prod.Peso & ",'" & prod.Color & "','" & prod.Imagen & "'," & prod.Existencias & "," &
+            prod.Estado & "," & prod.IDCategoria
         cnx.guardar("tiendaasp.producto", valores)
         Response.Redirect("/Admin/Products")
     End Sub
