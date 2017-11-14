@@ -4,6 +4,11 @@ Partial Class Admin_Requests
     Inherits System.Web.UI.Page
     Dim cnx As New Conexion
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        If Request.Params("idPedidoSend") <> "" Then
+            enviarPedido(Request.Params("idPedidoSend"))
+        End If
+
         ObtenerDatos()
     End Sub
 
@@ -34,11 +39,21 @@ Partial Class Admin_Requests
             d = d & "<td>" & pedidos.Rows(i).Item("fechaPedido") & "</td>"
             d = d & "<td>" & pedidos.Rows(i).Item("fechaEntrega") & "</td>"
             d = d & "<td style='width:140px;'>"
-            d = d & "<a class='btn btn-success btn-xs btn-edit' href='SendRequest?idRequest=" & pedidos.Rows(i).Item("id") & "'>Enviar</a>"
+            d = d & "<a class='btn btn-success btn-xs btn-send' id='" & pedidos.Rows(i).Item("id") & "'>Enviar</a>"
             d = d & "</td>"
             d = d & "</tr>"
         Next
         lblDatos.Text = d
+    End Sub
+
+    Protected Sub enviarPedido(idPedido As Integer)
+        Dim fecha As New Date
+        Dim valores As String
+        fecha = Today
+        'Response.Write("<script>alert('" & Format(fecha, "yyyy/MM/dd") & "')</script>")
+        valores = "'" & Format(fecha, "yyyy/MM/dd") & "', 0, null, 1," & Session("idUsuario") & "," & idPedido
+        cnx.guardar("tiendaasp.envio", valores)
+        Response.Redirect("/Admin/Sends")
     End Sub
 
 End Class

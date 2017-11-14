@@ -39,6 +39,6 @@ Partial Class Admin_RequestDetail
             d = d & "</tr>"
         Next
         lblDatos.Text = d
-        lblDatos.Text = lblDatos.Text & "<tr><td colspan='4'>Total:</td><td>$ " & total & "</></tr>"
+        lblDatos.Text = lblDatos.Text & "<tr><td colspan='4'>Total:</td><td>$ " & Math.Round(total, 2) & "</></tr>"
     End Sub
 End Class

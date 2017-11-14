@@ -14,7 +14,8 @@ Public Class Conexion
     End Function
 
     Public Sub guardar(tabla As String, valores As String)
-        Dim cmd As New SqlCommand("INSERT INTO " & tabla & " VALUES (" & valores & ")", conex)
+        Dim sql As String = "INSERT INTO " & tabla & " VALUES (" & valores & ")"
+        Dim cmd As New SqlCommand(sql, conex)
         conex.Open()
         cmd.ExecuteNonQuery()
         conex.Close()
