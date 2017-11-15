@@ -30,7 +30,7 @@ Partial Class Requests
     End Sub
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Session.Item("idCliente") = "" Then
+        If IsNothing(Session.Item("idCliente")) Then
             Response.Redirect("/Login")
         Else
             ObtenerDatos()

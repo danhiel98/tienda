@@ -102,7 +102,7 @@
                                     
                                     dtable = Session.Item("cart")
                                     longitud = dtable.Rows.Count
-                                    valores = "'" & Format(fechaPedido, "yyyy/MM/dd") & "','" & Format(fechaEntrega, "yyyy/MM/dd") & "',null,1," & Session.Item("idCliente")
+                                    valores = "'" & Format(fechaPedido, "yyyy/MM/dd") & "','" & Format(fechaEntrega, "yyyy/MM/dd") & "',null,1," & Session.Item("idCliente") & ",0"
                                     'Response.Write(valores)
                                     cnx.guardar("tiendaasp.pedido", valores)
                                     Dim lastId As Integer
