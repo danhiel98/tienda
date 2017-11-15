@@ -65,8 +65,7 @@
                             <th>Apellidos</th>
                             <th>Nombres</th>
                             <th>Correo-e</th>
-                            <th>Usuario desde</th>
-                            <th>Opción</th>
+                            <!--<th>Opción</th>-->
                         </tr>
                     </thead>
                     <tbody>

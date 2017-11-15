@@ -69,7 +69,7 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge">0</div>
                                         <div>Proveedores</div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                         <i class="fa fa-support fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
+                                        <div class="huge">0</div>
                                         <div>Marcas</div>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">0</div>
-                                        <div>Devoluciones</div>
+                                        <div>Envíos</div>
                                     </div>
                                 </div>
                             </div>

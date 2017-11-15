@@ -1,4 +1,4 @@
-﻿$(".btn-add").on("click", function () {
+﻿$(".btn-entregado").on("click", function () {
     var idProd = this.id;
     var cantidad = $("#cantidad" + idProd);
     var canti = cantidad.val();

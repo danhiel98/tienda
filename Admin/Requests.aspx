@@ -14,6 +14,7 @@
                                 <th>Cliente</th>
                                 <th>Fecha De Pedido</th>
                                 <th>Fecha De Entrega</th>
+                                <th>Enviado</th>
                                 <th>Opción</th>
                             </tr>
                         </thead>

@@ -31,7 +31,7 @@ Partial Class Admin_Users
             d = d & "<td>" & categories.Rows(i).Item("id") & "</td>"
             d = d & "<td>" & categories.Rows(i).Item("nombre") & "</td>"
             d = d & "<td style='width:140px;'>"
-            d = d & "<a class='btn btn-danger btn-xs' href='Categories.aspx?idCat=" & categories.Rows(i).Item("id") & "'>Eliminar</a>"
+            'd = d & "<a class='btn btn-danger btn-xs' href='Categories.aspx?idCat=" & categories.Rows(i).Item("id") & "'>Eliminar</a>"
             d = d & "<a class='btn btn-warning btn-xs btn-edit' data-toggle='modal' data-target='#editar' id='" & categories.Rows(i).Item("id") & "'>Editar</a>"
             d = d & "</td>"
             d = d & "</tr>"

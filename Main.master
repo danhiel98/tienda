@@ -33,7 +33,7 @@
 							<!-- Nav -->
 								<nav>
 									<ul>
-										<li><a href="#menu">Menu</a></li>
+                                        <li><a href="#menu">Menu</a></li>
 									</ul>
 								</nav>
 
@@ -42,11 +42,34 @@
 
 				<!-- Menu -->
 					<nav id="menu">
-						<h2>Menu</h2>
+                        <% 
+                        If IsNothing(Session.Item("idCliente")) Then
+                        %>
+                            <h2>Menu</h2>
+                        <%
+                        Else
+                        %>
+                            <h2><% Response.Write(Session.Item("nombreCliente")) %></h2>
+                        <%
+                        End If
+                        %>
+						
 						<ul>
 							<li><a href="/">Inicio</a></li>
-							<li><a href="/Login">Acceder</a></li>
                             <li><a href="/Cart">Carrito</a></li>
+                            <% 
+                                If IsNothing(Session.Item("idCliente")) Then
+                            %> 
+                            <li><a href="/Login">Acceder</a></li>
+                            <%     
+                            Else
+                            %>
+                            <li><a href="/Requests">Mis Pedidos</a></li>
+                            <li><a href="/Login">Cerrar Sesión</a></li>
+                            <%
+                            End If
+                                            
+                            %>
 						</ul>
 					</nav>
 

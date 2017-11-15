@@ -10,6 +10,7 @@
         },
         success: function () {
             alert("Se ha enviado el pedido!");
+            location = "/Admin/Requests"
         }
     });
 });

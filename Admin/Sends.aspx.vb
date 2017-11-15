@@ -5,6 +5,9 @@ Partial Class Admin_Requests
     Dim cnx As New Conexion
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         ObtenerDatos()
+        If Request.Params("idSendOk") <> "" Then
+            entregado(Request.Params("idSendOk"))
+        End If
     End Sub
 
     Public Sub Desactivar(idProd As String)
@@ -12,6 +15,13 @@ Partial Class Admin_Requests
             cnx.actualizar("tiendaasp.pedido", "estado=0", "id=" & idProd)
             Response.Redirect("/Admin/Products")
         End If
+    End Sub
+
+    Protected Sub entregado(idEnvio As Integer)
+        Dim fecha As New Date
+        fecha = Today
+        cnx.actualizar("tiendaasp.envio", "entregado=1, fechaEntregado='" & Format(fecha, "yyyy/MM/dd") & "'", "id=" & idEnvio)
+        Response.Redirect("/Admin/Sends")
     End Sub
 
     Protected Sub ObtenerDatos()
@@ -47,7 +57,7 @@ Partial Class Admin_Requests
             d = d & "<td>" & pedidos.Rows(0).Item("fechaEntrega") & "</td>"
             d = d & "<td style='text-align:center'><span class='fa fa-" & clase & "'></span></td>"
             d = d & "<td style='width:140px;'>"
-            d = d & "<a class='btn btn-success btn-xs btn-edit' " & disabled & " href='SendRequest?idSend=" & envios.Rows(i).Item("id") & "'>Entregado</a>"
+            d = d & "<a class='btn btn-success btn-xs btn-entregado' " & disabled & " href='Sends?idSendOk=" & envios.Rows(i).Item("id") & "'>Entregado</a>"
             d = d & "</td>"
             d = d & "</tr>"
         Next

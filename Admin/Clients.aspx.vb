@@ -35,7 +35,7 @@ Partial Class Admin_Users
             d = d & "<td>" & clientes.Rows(i).Item("telefono") & "</td>"
             d = d & "<td>" & clientes.Rows(i).Item("direccion") & "</td>"
             d = d & "<td>"
-            d = d & "<a class='btn btn-danger btn-xs' href='Clients.aspx?idCli=" & clientes.Rows(i).Item("id") & "'>Eliminar</a>"
+            'd = d & "<a class='btn btn-danger btn-xs' href='Clients.aspx?idCli=" & clientes.Rows(i).Item("id") & "'>Eliminar</a>"
             d = d & "<a class='btn btn-warning btn-xs btn-edit' data-toggle='modal' data-target='#editar' id='" & clientes.Rows(i).Item("id") & "'>Editar</a>"
             d = d & "</td>"
             d = d & "</tr>"

@@ -20,8 +20,7 @@ Partial Class Admin_Users
             d = d & "<td>" & usuarios.Rows(i).Item("apellido") & "</td>"
             d = d & "<td>" & usuarios.Rows(i).Item("nombre") & "</td>"
             d = d & "<td>" & usuarios.Rows(i).Item("email") & "</td>"
-            d = d & "<td>" & usuarios.Rows(i).Item("fechaCreado") & "</td>"
-            d = d & "<td><a class='" & claseBtn & "' href='Users.aspx?idUsr=" & usuarios.Rows(i).Item("id") & "'>Eliminar</a></td>"
+            'd = d & "<td><a class='" & claseBtn & "' href='Users.aspx?idUsr=" & usuarios.Rows(i).Item("id") & "'>Eliminar</a></td>"
             d = d & "</tr>"
         Next
         lblDatos.Text = d
@@ -41,9 +40,7 @@ Partial Class Admin_Users
         Dim email As String = Request.Params("email")
         Dim login As String = Request.Params("login")
         Dim clave As String = Request.Params("clave")
-        Dim fecha As New Date()
-        fecha = Today
-        Dim valores As String = "'" & nombre & "', '" & apellido & "','" & email & "', '" & login & "','" & clave & "','" & fecha & "', 1"
+        Dim valores As String = "'" & nombre & "', '" & apellido & "','" & email & "', '" & login & "','" & clave & "', 1"
         cnx.guardar("tiendaasp.usuario", valores)
         Response.Redirect("/Admin/Users")
     End Sub

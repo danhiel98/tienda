@@ -10,7 +10,7 @@
             Protected Function obtainProds() As Data.DataTable
                 Dim dtab As New System.Data.DataTable
                 Dim cnx As New Conexion
-                dtab = cnx.consultar("SELECT * FROM tiendaasp.producto where estado = 1")
+                dtab = cnx.consultar("SELECT * FROM tiendaasp.producto where existencias >= 1 AND estado = 1")
                 Return dtab
             End Function
         </script>                    
@@ -41,7 +41,7 @@
 					        <div class="content">
                                 <p>
                                     <% Response.Write(tb.Rows(i).Item("descripcion"))%> <br />
-                                    <% Response.Write(tb.Rows(i).Item("anchura"))%>cm x <%Response.Write(tb.Rows(i).Item("altura")) %>cm <br />
+                                    <% Response.Write(tb.Rows(i).Item("anchura"))%> cm x <%Response.Write(tb.Rows(i).Item("altura")) %> cm <br />
                                     <% Response.Write(tb.Rows(i).Item("peso")) %> kg <br />
                                     <% Response.Write(tb.Rows(i).Item("existencias"))%> disponibles <br />
                                   $ <% Response.Write(tb.Rows(i).Item("precio"))%>
@@ -51,8 +51,14 @@
         					</div>
 		        		</a>
 			        </article>
-           <%       Next
-                End If
+            <%       Next
+            Else
+            %>
+            <div>
+                <h1>Vaya! Parece que no hay nada por aquí, vuelva otro día.</h1>
+            </div>
+            <%
+            End If
            %>
 		</section>
 	</div>

@@ -6,8 +6,8 @@ Partial Class Admin_Ajax_AddToCart
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Request.Params("idPrd") > 0 Then
             Dim idProd, cantidad As Integer
-            idProd = Request.Params("idPrd")
-            cantidad = Request.Params("cant")
+            idProd = Val(Request.Params("idPrd"))
+            cantidad = Val(Request.Params("cant"))
             addProd(idProd, cantidad)
         End If
     End Sub

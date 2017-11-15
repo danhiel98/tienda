@@ -28,6 +28,15 @@ Partial Class Admin_Requests
         Dim d As String = ""
         For i = 0 To pedidos.Rows.Count - 1
             cli = client.obtenerClientePorID(pedidos.Rows(i).Item("idCliente"))
+
+            Dim clase, disabled As String
+            If pedidos.Rows(i).Item("enviado") = 1 Then
+                clase = "check"
+                disabled = "disabled onclick='return false'"
+            Else
+                clase = "times"
+            End If
+
             d = d & "<tr>"
             d = d & "<td>"
             d = d & "<a class='btn btn-default btn-xs' href='RequestDetail.aspx?idReq=" & pedidos.Rows(i).Item("id") & "'><span class='fa fa-eye'></a>"
@@ -38,8 +47,9 @@ Partial Class Admin_Requests
             d = d & "</td>"
             d = d & "<td>" & pedidos.Rows(i).Item("fechaPedido") & "</td>"
             d = d & "<td>" & pedidos.Rows(i).Item("fechaEntrega") & "</td>"
+            d = d & "<td style='text-align:center'><span class='fa fa-" & clase & "'></span></td>"
             d = d & "<td style='width:140px;'>"
-            d = d & "<a class='btn btn-success btn-xs btn-send' id='" & pedidos.Rows(i).Item("id") & "'>Enviar</a>"
+            d = d & "<a class='btn btn-success btn-xs btn-send' " & disabled & " id='" & pedidos.Rows(i).Item("id") & "'>Enviar</a>"
             d = d & "</td>"
             d = d & "</tr>"
         Next
@@ -53,6 +63,7 @@ Partial Class Admin_Requests
         'Response.Write("<script>alert('" & Format(fecha, "yyyy/MM/dd") & "')</script>")
         valores = "'" & Format(fecha, "yyyy/MM/dd") & "', 0, null, 1," & Session("idUsuario") & "," & idPedido
         cnx.guardar("tiendaasp.envio", valores)
+        cnx.actualizar("tiendaasp.pedido", "enviado=1", "id=" & idPedido)
         Response.Redirect("/Admin/Sends")
     End Sub
 

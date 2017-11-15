@@ -131,9 +131,6 @@
                      <li>
                         <a href="Sends.aspx"><i class="fa fa-fw fa-wrench"></i> Envíos</a>
                     </li>
-                     <li>
-                        <a href="devolucio.aspx"><i class="fa fa-fw fa-wrench"></i> devolucion</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
